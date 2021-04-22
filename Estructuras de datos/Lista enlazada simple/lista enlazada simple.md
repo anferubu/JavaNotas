@@ -4,9 +4,25 @@ Consiste en una secuencia de nodos, en los que se guardan datos arbitrarios y un
 
 A continuación se encuentra la implementación en Java de una lista enlazada simple.
 
+- [Clase **Node**](#clase-node).
+- [Clase **SimpleLinkedList**](#clase-simplelinkedlist).
+    - [Métodos de la clase **SimpleLinkedList**](#métodos-de-la-clase-simplelinkedlist).
+        - [Comprobar si la lista está vacía](#comprobar-si-la-lista-está-vacía).
+        - [Limpiar lista](#limpiar-lista).
+        - [Obtener tamaño de lista](#obtener-tamaño-de-lista).
+        - [Comprobar si la lista contiene un elemento](#comprobar-si-la-lista-contiene-un-elemento).
+        - [Obtener un elemento de la lista](#obtener-un-elemento-de-la-lista).
+        - [Agregar elemento al inicio de la lista](#agregar-elemento-al-inicio-de-la-lista).
+        - [Agregar elemento en una posición dada](#agregar-elemento-en-una-posición-dada).
+        - [Agregar elemento al final de la lista](#agregar-elemento-al-final-de-la-lista).
+        - [Eliminar primer elemento de la lista](#eliminar-primer-elemento-de-la-lista).
+        - [Eliminar elemento en una posición dada](#eliminar-elemento-en-una-posición-dada).
+        - [Eliminar último elemento de la lista](#eliminar-último-elemento-de-la-lista).
+        - [Sobrescribir **toString**](#sobrescribir-tostring).
 
 
-### Clase `Node`
+
+### Clase **Node**
 
 Esta clase contiene dos campos, el dato que almacena y una referencia al nodo siguiente. Al inicializar un objeto de esta clase, se pasa como parámetro el dato que guardará el nodo y se establece la referencia al siguiente como nula.
 
@@ -31,7 +47,8 @@ public class Node {
 
 
 
-### Clase `SimpleLinkedList`
+
+### Clase **SimpleLinkedList**
 
 Esta clase contiene como campo el primer nodo de la lista, el cual se establece como nulo al inicializar un objeto de este tipo. 
 
@@ -49,9 +66,10 @@ public class SimpleLinkedList {
 
 
 
-#### Métodos de la clase `SimpleLinkedList`
 
-##### - `isEmpty()`
+#### Métodos de la clase **SimpleLinkedList**
+
+##### Comprobar si la lista está vacía.
 
 Evalúa si la lista está vacía, comprobando si el primer elemento de la lista es `null`.
 
@@ -63,7 +81,8 @@ public boolean isEmpty() {
 
 
 
-##### - `clear()`
+
+##### Limpiar lista.
 
 Para vaciar una lista enlazada, simplemente se asigna el primer elemento como nulo. De esta manera, los demás elementos quedarán sin referencia y posteriormente serán eliminados por el recogedor de basura de Java.
 
@@ -75,11 +94,12 @@ public void clear() {
 
 
 
-##### - `size()`
+
+##### Obtener tamaño de lista.
 
 Para obtener el tamaño de la lista se utiliza un nodo auxiliar que recorre cada nodo y a medida que avanza, se va contando el número de elementos.
 
-```
+~~~java
 public int size() {
     Node aux = head;
     int size = 0;
@@ -89,16 +109,16 @@ public int size() {
     }
     return size;
 }
-```
+~~~
 
 
 
-##### - `contains(Object data)`
+
+##### Comprobar si la lista contiene un elemento.
 
 Evalúa si la lista contiene el elemento pasado como parámetro. Se utiliza un nodo auxiliar para recorrer la lista, el cual comienza en la cabeza y a medida que avanza, se compara su valor con el parámetro.
 
 ~~~java
-// Evalúa si la lista contiene el elemento.
 public boolean contains(Object data) {
     Node aux = head;
     while (aux != null) {
@@ -112,7 +132,8 @@ public boolean contains(Object data) {
 
 
 
-##### - `get(int index)`
+
+##### Obtener un elemento de la lista.
 
 Este método retorna el elemento de la lista en la posición dada, en donde el primer elemento tiene un índice `0`. Para esto se utiliza un nodo auxiliar, el cual inicia en la cabeza de la lista y a medida que avanza, se va contando la posición del nodo.
 
@@ -130,7 +151,8 @@ public Object get(int index) {
 
 
 
-##### - `addFirst(Object data)`
+
+##### Agregar elemento al inicio de la lista.
 
 Para añadir un nuevo elemento al inicio de la lista se crea el nodo. Luego, se establece que el nodo siguiente a este sea la cabeza de la lista (*si la lista está vacía, apuntará a `null`*). Al final, se establece como cabeza de la lista al nuevo nodo.
 
@@ -144,7 +166,8 @@ public void addFirst(Object data) {
 
 
 
-##### - `addAt(int index, Object data)`
+
+##### Agregar elemento en una posición dada.
 
 Para añadir un nuevo elemento en cualquier posición de la lista, primero se crea el nuevo nodo. Si el índice es `0` se realiza el mismo procedimiento en que `addFirst()`. 
 
@@ -172,7 +195,8 @@ public void addAt(int index, Object data) {
 
 
 
-##### - `addLast(Object data)`
+
+##### Agregar elemento al final de la lista.
 
 Para añadir un elemento al final de la lista, se crean dos nodos, uno correspondiente al nuevo elemento y otro utilizado para recorrer la lista. Si la lista está vacía, establece el nuevo nodo como la cabeza de la lista. Si no, recorre la lista hasta llegar al último nodo y se asigna que en vez de apuntar a `null`, ahora apunte al nuevo nodo.
 
@@ -192,7 +216,8 @@ public void addLast(Object data) {
 
 
 
-##### - `removeFirst()`
+
+##### Eliminar primer elemento de la lista.
 
 Este método retorna el primer elemento de la lista y lo elimina de esta. Se crea un nodo auxiliar que corresponde a la cabeza de la lista y al elemento que será retornado. Luego, si la lista no está vacía, hace que la nueva cabeza sea el segundo elemento de esta.
 
@@ -207,7 +232,8 @@ public Object removeFirst() {
 
 
 
-##### - `removeAt(int index)`
+
+##### Eliminar elemento en una posición dada.
 
 Remueve el elemento en la posición dada. Si el índice es `0`, se establece como primer elemento de la lista al segundo. Si no, se crea un nodo auxiliar para recorrer la lista junto a un contador, se ubica el nodo auxiliar justo antes de la posición deseada y se indica que el nodo siguiente a este sea el que está a dos posiciones, para así dejar el nodo deseado sin referencia, por lo que posteriormente será eliminado por el recogedor de basura de Java.
 
@@ -229,7 +255,8 @@ public void removeAt(int index) {
 
 
 
-##### - `removeLast()`
+
+##### Eliminar último elemento de la lista.
 
 Remueve y retorna el último elemento de la lista. Si la lista está vacía, retorna `null`. Si no, se crea un nodo auxiliar y se ubica justo antes del último elemento. Luego se crea otro nodo que corresponde al último y que será el objeto retornado. Por último, se establece que el elemento siguiente al penúltimo sea `null`.
 
@@ -248,9 +275,10 @@ public Object removeLast() {
 
 
 
-##### - `toString()`
 
-Se sobreescribe este método para que al imprimir la lista, se obtenga una cadena legible de la forma `["A", "B", "C"]`. Básicamente, se crea un nodo auxiliar para recorrer toda la lista, y a medida que avanza se va concatenando su valor a una cadena de caracteres previamente inicializada.
+##### Sobrescribir **toString**
+
+Se sobrescribe este método para que al imprimir la lista, se obtenga una cadena legible de la forma `["A", "B", "C"]`. Básicamente, se crea un nodo auxiliar para recorrer toda la lista, y a medida que avanza se va concatenando su valor a una cadena de caracteres previamente inicializada.
 
 ~~~java
 @Override
