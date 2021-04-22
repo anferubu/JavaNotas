@@ -2,6 +2,8 @@
 
 Consiste en una secuencia de nodos, en los que se guardan datos arbitrarios y una referencia al nodo siguiente, mientras que el último nodo apunta a `null` para indicar el final de la lista.
 
+![Lista enlazada simple](./simpleLinkedList.png)
+
 A continuación se encuentra la implementación en Java de una lista enlazada simple.
 
 - [Clase **Node**](#clase-node).
