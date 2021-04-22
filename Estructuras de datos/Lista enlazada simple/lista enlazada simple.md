@@ -21,6 +21,8 @@ A continuación se encuentra la implementación en Java de una lista enlazada si
         - [Sobrescribir **toString**](#sobrescribir-tostring).
 
 
+---
+
 
 ### Clase **Node**
 
@@ -46,6 +48,7 @@ public class Node {
 ~~~
 
 
+---
 
 
 ### Clase **SimpleLinkedList**
@@ -65,6 +68,7 @@ public class SimpleLinkedList {
 ~~~
 
 
+---
 
 
 #### Métodos de la clase **SimpleLinkedList**
@@ -80,6 +84,7 @@ public boolean isEmpty() {
 ~~~
 
 
+---
 
 
 ##### Limpiar lista.
@@ -93,6 +98,7 @@ public void clear() {
 ~~~
 
 
+---
 
 
 ##### Obtener tamaño de lista.
@@ -112,6 +118,7 @@ public int size() {
 ~~~
 
 
+---
 
 
 ##### Comprobar si la lista contiene un elemento.
@@ -131,6 +138,7 @@ public boolean contains(Object data) {
 ~~~
 
 
+---
 
 
 ##### Obtener un elemento de la lista.
@@ -150,6 +158,7 @@ public Object get(int index) {
 ~~~
 
 
+---
 
 
 ##### Agregar elemento al inicio de la lista.
@@ -165,6 +174,7 @@ public void addFirst(Object data) {
 ~~~
 
 
+---
 
 
 ##### Agregar elemento en una posición dada.
@@ -194,6 +204,7 @@ public void addAt(int index, Object data) {
 ~~~
 
 
+---
 
 
 ##### Agregar elemento al final de la lista.
@@ -215,6 +226,7 @@ public void addLast(Object data) {
 ~~~
 
 
+---
 
 
 ##### Eliminar primer elemento de la lista.
@@ -231,6 +243,7 @@ public Object removeFirst() {
 ~~~
 
 
+---
 
 
 ##### Eliminar elemento en una posición dada.
@@ -254,6 +267,7 @@ public void removeAt(int index) {
 ~~~
 
 
+---
 
 
 ##### Eliminar último elemento de la lista.
@@ -274,6 +288,7 @@ public Object removeLast() {
 ~~~
 
 
+---
 
 
 ##### Sobrescribir **toString**
