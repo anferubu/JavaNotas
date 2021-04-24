@@ -1,14 +1,14 @@
-## Lista enlazada simple
+## Lista enlazada simple circular
 
-Consiste en una secuencia de nodos, en los que se guardan datos arbitrarios y una referencia al nodo siguiente, mientras que el último nodo apunta a `null` para indicar el final de la lista.
+Consiste en una secuencia de nodos, en los que se guardan datos arbitrarios y una referencia al nodo siguiente. Pero a diferencia de una lista enlazada simple, el siguiente nodo del último apunta al primero.
 
-![Lista enlazada simple](./singlyLinkedList.png)
+![Lista enlazada simple circular](./circularSimpleLinkedList.png)
 
-A continuación se encuentra la implementación en Java de una lista enlazada simple.
+A continuación se encuentra la implementación en Java de una lista enlazada simple circular.
 
 - [Clase **Node**](#clase-node).
-- [Clase **SinglyLinkedList**](#clase-singlylinkedlist).
-    - [Métodos de la clase **SinglyLinkedList**](#métodos-de-la-clase-singlylinkedlist).
+- [Clase **CircularSinglyLinkedList**](#clase-circularsinglylinkedlist).
+    - [Métodos de la clase **CircularSinglyLinkedList**](#métodos-de-la-clase-circularsinglylinkedlist).
         - [Comprobar si la lista está vacía](#comprobar-si-la-lista-está-vacía).
         - [Limpiar lista](#limpiar-lista).
         - [Obtener tamaño de lista](#obtener-tamaño-de-lista).
@@ -52,12 +52,12 @@ public class Node {
 
 ---
 
-### Clase **SinglyLinkedList**
+### Clase **CircularSinglyLinkedList**
 
 Esta clase contiene como campo el primer nodo de la lista, el cual se establece como nulo al inicializar un objeto de este tipo. 
 
 ~~~java
-public class SimpleLinkedList {
+public class CircularSinglyLinkedList {
     public Node head;
     
     public SimpleLinkedList() {
@@ -71,7 +71,7 @@ public class SimpleLinkedList {
 
 ---
 
-#### Métodos de la clase **SinglyLinkedList**
+#### Métodos de la clase **CircularSinglyLinkedList**
 
 ##### Comprobar si la lista está vacía.
 

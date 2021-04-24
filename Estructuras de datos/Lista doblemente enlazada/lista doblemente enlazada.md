@@ -7,8 +7,8 @@ Consiste en una secuencia de nodos, en los que se guardan datos arbitrarios y do
 A continuación se encuentra la implementación en Java de una lista doblemente enlazada.
 
 - [Clase **Node**](#clase-node).
-- [Clase **SimpleLinkedList**](#clase-simplelinkedlist).
-    - [Métodos de la clase **SimpleLinkedList**](#métodos-de-la-clase-simplelinkedlist).
+- [Clase **DoublyLinkedList**](#clase-doublylinkedlist).
+    - [Métodos de la clase **DoublyLinkedList**](#métodos-de-la-clase-doublylinkedlist).
         - [Comprobar si la lista está vacía](#comprobar-si-la-lista-está-vacía).
         - [Limpiar lista](#limpiar-lista).
         - [Obtener tamaño de lista](#obtener-tamaño-de-lista).
@@ -77,8 +77,7 @@ public class DoublyLinkedList {
 
 ---
 
-
-#### Métodos de la clase **SimpleLinkedList**
+#### Métodos de la clase **DoublyLinkedList**
 
 ##### Comprobar si la lista está vacía.
 

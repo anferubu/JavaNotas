@@ -7,7 +7,7 @@ package mylinkedlist;
 public class Main {
 
     public static void main(String[] args) {
-        SimpleLinkedList list = new SimpleLinkedList();
+        SinglyLinkedList list = new SinglyLinkedList();
 
         list.addLast("B");
         list.addLast("C");

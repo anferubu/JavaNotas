@@ -4,10 +4,10 @@ package mylinkedlist;
  * Implementación de una lista enlazada simple.
  * @author Felipe Buriticá
  */
-public class SimpleLinkedList {
+public class SinglyLinkedList {
     public Node head;
 
-    public SimpleLinkedList() {
+    public SinglyLinkedList() {
         this.head = null;
     }
 
