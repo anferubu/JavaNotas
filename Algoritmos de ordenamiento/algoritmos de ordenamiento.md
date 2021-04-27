@@ -8,14 +8,16 @@ Aunque hay una gran cantidad de algoritmos de ordenamiento, en la práctica pred
 
 
 
-| **Nombre**     | **Best** | **Average** | **Worst** | **Memory** |
-| -------------- | -------- | ----------- | --------- | ---------- |
-| Heapsort       | n log(n) | n log(n)    | n log(n)  | 1          |
-| Mergesort      | n log(n) | n log(n)    | n log(n)  | n          |
-| Quicksort      | n log(n) | n log(n)    | n^2^      | log(n)     |
-| Insertion sort | n        | n^2^        | n^2^      | 1          |
-| Bubble sort    | n        | n^2^        | n^2^      | 1          |
-| Selection sort | n^2^     | n^2^        | n^2^      | 1          |
+| **Nombre**     | **Best** | **Average** | **Worst** | **Memory** | **Stable** |
+| -------------- | -------- | ----------- | --------- | ---------- | ---------- |
+| Bubble sort    | n        | n^2^        | n^2^      | 1          | Yes        |
+| Gnome sort     | n        | n^2^        | n^2^      | 1          | Yes        |
+| Selection sort | n^2^     | n^2^        | n^2^      | 1          | No         |
+| Insertion sort | n        | n^2^        | n^2^      | 1          | Yes        |
+| Shellsort      | n log(n) | n^4/3^      | n^3/2^    | 1          | No         |
+| Heapsort       | n log(n) | n log(n)    | n log(n)  | 1          | No         |
+| Mergesort      | n log(n) | n log(n)    | n log(n)  | n          | Yes        |
+| Quicksort      | n log(n) | n log(n)    | n^2^      | log(n)     | No         |
 
 
 
@@ -44,6 +46,31 @@ public static void bubblesort(int[] array) {
                 array[j] = array[j+1];
                 array[j+1] = aux;
             }
+        }
+    }
+}
+~~~
+
+
+
+### Gnome sort
+
+Es una variedad del *bubble sort*, en donde el arreglo se recorre en ambas direcciones. Se compara cada elemento de la lista con el siguiente, si están en orden se sigue recorriendo la lista, si no están en orden, se intercambian y se recorre la lista hacia atrás hasta ubicar el valor en su posición corrrecta. Cuando el puntero alcanza el extremo superior de la lista, ya está totalmente ordenada.
+
+~~~java
+// Si se está en el inicio o si el elemento es menor
+// al siguiente, se pasa al próximo elemento.
+// Si el elemento es mayor al siguiente, se realiza
+// el intercambio y se retrocede hasta ubicarlo.
+public static void gnomesort(int[] array) {
+    for (int i=0; i<array.length;) {
+        if (i == 0 || array[i-1] <= array[i])
+            i++;
+        else {
+            int tmp = array[i];
+            array[i] = array[i-1];
+            array[i-1] = tmp;
+            i--;
         }
     }
 }
@@ -104,11 +131,30 @@ public static void insertionsort(int[] array) {
 
 
 
-## Shellsort
+### Shellsort
 
-Este algoritmo es una generalización del ordenamiento por inserción
+Este algoritmo es una generalización del ordenamiento por inserción, el cual es eficiente solo si la lista está casi ordenada, mientras que generalmente es ineficiente, porque mueve los valores solo una posición a la vez.
 
+*Shellsort* mejora el ordenamiento por inserción comparando elementos separados por un espacio de varias posiciones. En cada recorrido, este espacio va disminuyendo, de manera que el último paso es un simple ordenamiento por inserción, pero para entonces, la lista ya se encuentra casi ordenada.
 
+~~~java
+// Se itera cada vez según el espacio entre elementos.
+// Luego se implementa el insertion sort.
+public static void shellsort(int[] array) {
+    int n = array.length;
+    for (int gap=n/2; gap>0; gap/=2) {
+        for (int i=gap; i<n; i++) {
+            int current = array[i];
+            int j = i;
+            while (j >= gap && current < array[j-gap]) {
+                array[j] = array[j-gap];
+                j -= gap;
+            }
+            array[j] = current;
+        }
+    }
+}
+~~~
 
 
 
@@ -123,15 +169,64 @@ Un montículo (*heap*) es un árbol binario ordenado. Existen dos tipos:
 
 
 
+Al construir un *max-heap* a partir del arreglo dado, el elemento más grande se almacena en la raíz del montículo (*índice `0`*). Se reemplaza este valor con el último de la lista y luego se reduce el tamaño del montículo en `1`. Finalmente, se apila la raíz del árbol. Esto se repite mientras el montículo tenga un tamaño mayor que `1`.
+
+
+
 1.  Create max heap.
 2.  Remove largest item.
 3.  Place item in sorted partition.
 
-
-
-
-
-
+~~~java
+// Se construye el max-heap reorganizando el
+// arreglo, luego uno a uno se extraen los
+// elementos del heap y se llama a heapify()
+// en el heap reducido.
+public static void heapsort(int[] array) {
+    int n = array.length;
+    buildheap(array);
+    for (int i=n-1; i>0; i--) {
+        int tmp = array[0];
+        array[0] = array[i];
+        array[i] = tmp;
+        heapify(array, i, 0);
+    }
+}
+    
+// Construye un max-heap a partir del arreglo.
+// Llama a heapify() para cada nodo principal, 
+// comenzando con el último.
+private static void buildheap(int[] array) {
+    int n = array.length;
+    int lastParent = n / 2 - 1;
+    for (int i=lastParent; i>=0; i--)
+        heapify(array, n, i);
+}
+    
+// Comprueba si un nodo hijo es más grande que el nodo
+// padre, en cuyo caso se intercambian, repitiendo el
+// proceso con el nodo hijo.
+// n : tamaño del arreglo.
+// i : índice del padre.
+// l : índice del hijo izquierdo.
+// r : índice del hijo derecho.
+// largest : índice del mayor valor.
+private static void heapify(int array[], int n, int i) {
+    int largest = i;
+    int l = i * 2 + 1;
+    int r = i * 2 + 2;
+    if (l < n && array[l] > array[largest])
+        largest = l;
+    if (r < n && array[r] > array[largest])
+        largest = r;
+    if (largest != i) {
+        int tmp = array[i];
+        array[i] = array[largest];
+        array[largest] = tmp;
+        heapify(array, n, largest);
+    }
+}
+~~~
 
 
 
